@@ -6,7 +6,7 @@ export const routes: Routes = [
     loadComponent: () => import('./landing/landing.component'),
     children: [
       {
-        path: '',
+        path: 'inicio',
         title: 'Inicio',
         loadComponent: () => import('./landing/pages/inicio/inicio.component'),
       },
@@ -16,12 +16,17 @@ export const routes: Routes = [
         loadComponent: () => import('./landing/pages/servicios/servicios.component'),
       },
       {
+        path: 'parroquias',
+        title: 'Parroquias',
+        loadComponent: () => import('./landing/pages/parroquias/parroquias.component'),
+      },
+      {
         path: 'sobre-nosotros',
         title: 'Sobre Nosotros',
         loadComponent: () => import('./landing/pages/sobre-nosotros/sobre-nosotros.component')
       },
       {
-        path: '',
+        path: 'inicio',
         redirectTo: '/',
         pathMatch: 'full',
       }
