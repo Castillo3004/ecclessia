@@ -12,10 +12,6 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(){
-    console.log(this.menuItems);
-  }
-
   public menuItems = routes
     .map( route => route.children ?? [] )
     .flat()

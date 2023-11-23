@@ -10,7 +10,7 @@
 
         @for (item of socialItems; track $index) {
           <a [href]="item.link" target="_blank">
-            <div class="bg-primary rounded-full h-10 w-10 p-2.5">
+            <div class="bg-primary rounded-full h-10 w-10 p-2.5 hover:opacity-80">
               <svg [attr.viewBox]="item.viewBox" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
                 <g>
                   <path [attr.d]="item.path" fill="#ffffff"></path>
