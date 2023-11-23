@@ -26,8 +26,8 @@ export const routes: Routes = [
         loadComponent: () => import('./landing/pages/sobre-nosotros/sobre-nosotros.component')
       },
       {
-        path: 'inicio',
-        redirectTo: '/',
+        path: '',
+        redirectTo: '/inicio',
         pathMatch: 'full',
       }
     ]
