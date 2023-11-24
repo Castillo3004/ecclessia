@@ -15,7 +15,7 @@ interface EnlacesFooter{
 
 
 @Component({
-  selector: 'landing-shared-footer',
+  selector: 'shared-footer',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './footer.component.html',

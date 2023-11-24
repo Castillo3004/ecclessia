@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { routes } from '../../../app.routes';
+import { routes } from '../../app.routes';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'landing-shared-header',
+  selector: 'shared-header',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
