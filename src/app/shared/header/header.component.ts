@@ -10,11 +10,22 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
+
+
 export class HeaderComponent {
 
-  public menuItems = routes
-    .map( route => route.children ?? [] )
-    .flat()
-    .filter( route => route && route.path )
-    .filter( route => !route.path?.includes(':') )
+  public menuItems;
+
+  constructor(){
+
+    this.menuItems = [
+      { path: '/inicio', titulo: 'Inicio'},
+      { path: '/servicios', titulo: 'Servicios'},
+      { path: '/parroquias', titulo: 'Parroquias'},
+      { path: '/sobre-nosotros', titulo: 'Sobre Nosotros'},
+    ]
+
+  }
+
+
 }

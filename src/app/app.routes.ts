@@ -4,6 +4,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./landing/landing.component'),
+    title: 'Landing',
     children: [
       {
         path: 'inicio',
