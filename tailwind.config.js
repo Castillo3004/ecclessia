@@ -11,6 +11,8 @@ module.exports = {
         'orange-eclessia': '#E67E22',
         'gris-eclessia': '#34495E',
         'white-eclessia': '#ECF0F1',
+        'fondo-transpartente': '#151A1E56',
+        '2fondo-transpartente': '#0790A53A',
       }
     },
   },

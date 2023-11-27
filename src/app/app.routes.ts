@@ -38,6 +38,7 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/auth.component'),
     children: [
       { path: 'login', loadComponent: () => import('./auth/pages/login/login.component') },
+      { path: 'register', loadComponent: () => import('./auth/pages/register/register.component') },
       { path: '', redirectTo: '/login', pathMatch: 'full'}
     ]
   },

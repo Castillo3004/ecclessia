@@ -1,31 +1,33 @@
 <shared-header></shared-header>
 
-<div class="p-3 h-screen bg-[#34495E] text-white-eclessia">
+<main class="w-full flex bg-primary gap-10">
+  <section
+    class="relative flex-1 hidden items-center justify-center h-[90vh] lg:flex"
+  >
+    <div
+      class="w-full max-w-md space-y-8 p-8 bg-fondo-transpartente rounded-2xl text-white"
+    >
 
-  <div class="flex h-full">
+    <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
 
-    <section class="bg-primary rounded-3xl m-10 p-8">
+    <h3>Lorem ipsum dolor sit amet.</h3>
 
-      <figure>
-        <img src="" alt="">
-      </figure>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae dolores aliquid reprehenderit.</p>
 
-      <div>
-        <h1>Lorem Ipsum</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, non? Fuga non tenetur cupiditate reiciendis?</p>
-      </div>
-    </section>
+    </div>
+  </section>
 
 
-    <section class="bg-primary rounded-3xl m-10 p-8">
+  <section class="flex-1 flex items-center justify-center h-[90vh]">
+    <div
+      class="w-full max-w-md space-y-6 p-8 bg-2fondo-transpartente rounded-2xl text-white "
+    >
 
       <router-outlet></router-outlet>
 
-    </section>
+    </div>
+  </section>
+</main>
 
-  </div>
-
-</div>
 
 <shared-footer></shared-footer>
-

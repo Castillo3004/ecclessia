@@ -1,13 +1,66 @@
-<section class="bg-primary rounded-3xl m-10 p-8">
-  <figure>
-    <img src="" alt="" />
-  </figure>
+<div class="gap-4">
 
-  <div>
-    <h1>Lorem Ipsum</h1>
-    <p>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem, non? Fuga
-      non tenetur cupiditate reiciendis?
-    </p>
+  <h3 class="text-xl font-bold text-center">Iniciar Sesión</h3>
+
+  <form>
+    <div class="pt-4">
+      <label for="email" class="mb-2 inline-block text-xs"
+        >Correo Electronico</label
+      >
+      <input
+        id="email"
+        type="email"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Email o Usuario"
+      />
+    </div>
+
+    <div class="pt-4">
+      <label for="password" class="mb-2 inline-block text-xs">Password</label>
+      <input
+        id="password"
+        type="password"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Contraseña"
+      />
+    </div>
+
+    <div class="flex items-center pt-4">
+      <input
+        id="link-checkbox"
+        type="checkbox"
+        value=""
+        class="w-4 h-4 rounded-md text-secondary"
+      />
+      <label for="link-checkbox" class="ms-2 text-xs font-medium"
+        >¿Recordar Contraseña?</label
+      >
+    </div>
+
+    <div class="flex pt-4 text-center justify-center">
+      <button class="justify-center py-1.5 px-14 bg-primary rounded-md p-4">
+        Ingresar
+      </button>
+    </div>
+  </form>
+
+  <div class="flex gap-8 m-4">
+    <div class="w-full h-[1px] bg-slate-50 opacity-30"></div>
+    <div class="w-full h-[1px] bg-slate-50 opacity-30"></div>
   </div>
-</section>
+
+  <div class="flex gap-3 justify-center">
+    @for (socialIcon of loginIconos; track $index) {
+      <a href="">
+        <div class="h-9 w-9 bg-primary rounded-full p-2">
+          <img [src]="socialIcon.urlImg" [alt]="socialIcon.name">
+        </div>
+      </a>
+    }
+  </div>
+
+  <div class="justify-center text-center opacity-75 pt-2">
+    <a  [routerLink]="['/auth/register']" class="text-sm hover:underline"> ¿Aun no tienes una cuenta? </a>
+  </div>
+</div>
+
