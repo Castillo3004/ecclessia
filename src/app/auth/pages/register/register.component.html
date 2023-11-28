@@ -1,4 +1,103 @@
-<div  class="gap-4">
+<div  class="gap-4" style="view-transition-name: auth;">
+
+  <h3 class="text-xl font-bold text-center">Registrarse</h3>
+
+  <form>
+
+    <div class="pt-4">
+      <label for="name" class="mb-2 inline-block text-xs"
+        >Nombres</label
+      >
+      <input
+        id="name"
+        type="text"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Nombre y Apellido"
+      />
+    </div>
+
+    <div class="pt-4">
+      <label for="email" class="mb-2 inline-block text-xs"
+        >Correo Electronico</label
+      >
+      <input
+        id="email"
+        type="email"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Email"
+      />
+    </div>
+
+    <div class="flex gap-3">
+      <div class="pt-4">
+        <label for="celular" class="mb-2 inline-block text-xs"
+          >Celular</label
+        >
+        <input
+          id="celular"
+          type="text"
+          class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+          placeholder="Numero de Celular"
+        />
+      </div>
+      <div class="pt-4">
+        <label for="cedula" class="mb-2 inline-block text-xs"
+          >Cedula</label
+        >
+        <input
+          id="cedula"
+          type="text"
+          class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+          placeholder="Cedula"
+        />
+      </div>
+
+    </div>
+
+    <div class="pt-4">
+      <label for="password" class="mb-2 inline-block text-xs"
+        >Contraseña</label
+      >
+      <input
+        id="password"
+        type="password"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Contraseña"
+      />
+    </div>
+    <div class="pt-4">
+      <label for="rep-password" class="mb-2 inline-block text-xs"
+        >Repetir Contraeña</label
+      >
+      <input
+        id="rep-password"
+        type="password"
+        class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
+        placeholder="Repetir Contraseña"
+      />
+    </div>
+
+
+    <div class="flex items-center pt-4">
+      <input
+        id="link-terms"
+        type="checkbox"
+        value=""
+        class="w-4 h-4 rounded-md text-secondary"
+      />
+      <label for="link-terms" class="ms-2 text-xs font-medium"
+        >He leido y Acepto los terminos y condiciones de Eclessia</label
+      >
+    </div>
+
+    <div class="flex pt-4 text-center justify-center">
+      <button class="justify-center py-1.5 px-14 bg-primary rounded-md p-4 hover:opacity-80">
+        Registrarse
+      </button>
+    </div>
+
+
+  </form>
 
   <div class="justify-center text-center opacity-75 pt-2">
     <a  [routerLink]="['/auth/login']" class="text-sm hover:underline"> ¿Ya tienes una cuenta? </a>
