@@ -1,5 +1,5 @@
 
-<footer class="relative background-footer pt-8 pb-6 text-white-eclessia">
+<footer class="relative bg-secondary pt-8 pb-6 text-white-eclessia">
   <div class="container mx-auto px-4">
 
     <div class="flex justify-around items-center">
@@ -10,10 +10,10 @@
 
         @for (item of socialItems; track $index) {
           <a [href]="item.link" target="_blank">
-            <div class="bg-primary rounded-full h-10 w-10 p-2.5 hover:opacity-80">
+            <div class="bg-white-eclessia  rounded-full h-10 w-10 p-2.5 hover:opacity-80">
               <svg [attr.viewBox]="item.viewBox" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid">
                 <g>
-                  <path [attr.d]="item.path" fill="#ffffff"></path>
+                  <path [attr.d]="item.path" fill="#0F2A3D"></path>
                 </g>
               </svg>
             </div>

@@ -11,7 +11,7 @@
   bottom: 0;
   width: 100%;
   height: 2px;
-  background: #078FA5;
+  background: #ECF0F1;
   transform: translateX(-50%) scaleX(0);
   transform-origin: bottom center;
   transition: transform 0.3s ease;
