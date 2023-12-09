@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
+import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
+
+
 @Component({
   selector: 'auth-register',
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule ],
+  imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, ErrorMessageComponent ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export default class RegisterComponent {
+
+  // Variables
+  private patternEmail = "^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$";
+
+
 
 
   // Inyeccion Dependencias
@@ -21,7 +29,7 @@ export default class RegisterComponent {
 
   public registerForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(5)] ],
-    email: ['', [Validators.required, Validators.email] ],
+    email: ['', [Validators.required, Validators.pattern(this.patternEmail) ] ],
     telefono: ['', [Validators.required, Validators.maxLength(10)]],
     cedula: ['', [Validators.required, Validators.maxLength(10)] ],
     password: ['', [Validators.required, Validators.minLength(5)] ],
@@ -38,16 +46,13 @@ export default class RegisterComponent {
 
 
 
-
-
-
   // Metodos
 
   registrar(){
     console.log(this.registerForm.value);
-    this.router.navigateByUrl('/dashboard/inicio');
+    // console.log(this.registerForm.get('nombre')?.errors)
+    // this.router.navigateByUrl('/dashboard/inicio');
   }
-
 
 
 
