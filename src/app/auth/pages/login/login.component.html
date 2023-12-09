@@ -2,7 +2,7 @@
 
   <h3 class="text-xl font-bold text-center">Iniciar Sesión</h3>
 
-  <form>
+  <form [formGroup]="loginForm" (ngSubmit)="ingresar()" autocomplete="off" >
     <div class="pt-4">
       <label for="email" class="mb-2 inline-block text-xs"
         >Correo Electronico</label
@@ -12,6 +12,7 @@
         type="email"
         class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
         placeholder="Email o Usuario"
+        formControlName="email"
       />
     </div>
 
@@ -22,6 +23,7 @@
         type="password"
         class="w-full rounded-md px-3 py-1 outline-none text-gray-800"
         placeholder="Contraseña"
+        formControlName="password"
       />
     </div>
 
@@ -29,8 +31,8 @@
       <input
         id="link-checkbox"
         type="checkbox"
-        value=""
         class="w-4 h-4 rounded-md text-secondary"
+        formControlName="remember"
       />
       <label for="link-checkbox" class="ms-2 text-xs font-medium"
         >¿Recordar Contraseña?</label
@@ -38,7 +40,10 @@
     </div>
 
     <div class="flex pt-4 text-center justify-center">
-      <button class="justify-center py-1.5 px-14 bg-primary rounded-md p-4 hover:opacity-80">
+      <button
+        class="justify-center py-1.5 px-14 bg-primary rounded-md p-4 hover:opacity-80"
+        type="submit"
+      >
         Ingresar
       </button>
     </div>
@@ -50,7 +55,7 @@
   </div>
 
   <div class="flex gap-3 justify-center">
-    @for (socialIcon of loginIconos; track $index) {
+    @for (socialIcon of loginIcons; track $index) {
       <a href="" class="hover:opacity-70">
         <div class="h-9 w-9 bg-secondary rounded-full p-2">
           <img [srcset]="socialIcon.urlImg" [alt]="socialIcon.name">
