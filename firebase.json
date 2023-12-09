@@ -5,5 +5,21 @@
       "source": ".",
       "frameworksBackend": {}
     }
-  ]
+  ],
+  "emulators": {
+    "auth": {
+      "port": 9091
+    },
+    "firestore": {
+      "port": 9092
+    },
+    "hosting": {
+      "port": 9093
+    },
+    "ui": {
+      "enabled": true,
+      "port": 9090
+    },
+    "singleProjectMode": true
+  }
 }
