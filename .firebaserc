@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "eclessia-15f44": {
+      "hosting": {
+        "ecclessia": [
+          "eclessia"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "eclessia-15f44"
+  }
+}
