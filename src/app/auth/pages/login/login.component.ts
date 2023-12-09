@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface LoginIconos{
@@ -29,6 +29,8 @@ export default class LoginComponent{
 
   // Inyeccion Dependencias
   private fb = inject( FormBuilder );
+  private router = inject( Router );
+
 
 
 
@@ -46,6 +48,7 @@ export default class LoginComponent{
 
   ingresar(){
     console.log(this.loginForm.value);
+    this.router.navigateByUrl('/dashboard/inicio');
   }
 
 

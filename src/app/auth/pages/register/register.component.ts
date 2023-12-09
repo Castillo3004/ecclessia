@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,7 @@ export default class RegisterComponent {
 
   // Inyeccion Dependencias
   private fb = inject( FormBuilder );
+  private router = inject( Router );
 
 
 
@@ -44,6 +45,7 @@ export default class RegisterComponent {
 
   registrar(){
     console.log(this.registerForm.value);
+    this.router.navigateByUrl('/dashboard/inicio');
   }
 
 
