@@ -16,12 +16,18 @@ export class RegisterService {
   private readonly auth = inject( Auth );
 
 
-
   async signUp(email: string, password: string): Promise<void>{
     try {
 
       // Create account
-      const { user } = await createUserWithEmailAndPassword( this.auth, email, password);
+      await createUserWithEmailAndPassword( this.auth, email, password);
+
+      await this.auth.currentUser?.getIdTokenResult().then( claims => {
+        claims.claims =
+          { rol: 'SUPER_USER' }
+      })
+
+
 
 
       // Send email
