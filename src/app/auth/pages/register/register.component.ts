@@ -26,7 +26,6 @@ export default class RegisterComponent {
   private router = inject( Router );
 
 
-
   public registerForm: FormGroup = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(5)] ],
     email: ['', [Validators.required, Validators.pattern(this.patternEmail) ] ],
@@ -42,16 +41,12 @@ export default class RegisterComponent {
 
 
 
-
-
-
-
   // Metodos
 
   registrar(){
     console.log(this.registerForm.value);
     // console.log(this.registerForm.get('nombre')?.errors)
-    // this.router.navigateByUrl('/dashboard/inicio');
+    this.router.navigateByUrl('/dashboard/inicio');
   }
 
 

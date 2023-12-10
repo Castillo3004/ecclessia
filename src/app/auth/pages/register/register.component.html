@@ -89,7 +89,7 @@
     </div>
 
 
-    <div class="flex items-center pt-1.5">
+    <div class="flex items-center pt-3">
       <input
         id="link-terms"
         type="checkbox"
@@ -106,6 +106,7 @@
       <button
         class="justify-center py-1.5 px-14 bg-primary rounded-md p-4 hover:opacity-80"
         type="submit"
+        [disabled]="!registerForm.valid"
       >
         Registrarse
       </button>
