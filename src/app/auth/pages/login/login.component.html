@@ -56,7 +56,7 @@
 
   <div class="flex gap-3 justify-center">
     @for (socialIcon of loginIcons; track $index) {
-      <a href="" class="hover:opacity-70">
+      <a (click)="socialIcon.accion()" class="cursor-pointer hover:opacity-70">
         <div class="h-9 w-9 bg-secondary rounded-full p-2">
           <img [srcset]="socialIcon.urlImg" [alt]="socialIcon.name">
         </div>

@@ -20,14 +20,14 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       provideAuth(() => {
         const auth = getAuth();
-        connectAuthEmulator(auth, 'http://localhost:9091', { disableWarnings: true });
+        connectAuthEmulator(auth, 'http://127.0.0.1:9091', { disableWarnings: true });
         return auth;
       }),
     ),
     importProvidersFrom(
       provideFirestore(() => {
         const firestore = getFirestore();
-        connectFirestoreEmulator( firestore, 'http://localhost', 9092);
+        connectFirestoreEmulator( firestore, 'http://127.0.0.1', 9092);
         return firestore;
       }),
     ),

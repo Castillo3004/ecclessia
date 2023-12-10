@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
+import { RegisterService } from '../../services/auth/register.service';
 
 
 @Component({
@@ -23,17 +24,18 @@ export default class RegisterComponent {
 
   // Inyeccion Dependencias
   private fb = inject( FormBuilder );
+  private registerService = inject( RegisterService );
   private router = inject( Router );
 
 
   public registerForm: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required, Validators.minLength(5)] ],
-    email: ['', [Validators.required, Validators.pattern(this.patternEmail) ] ],
-    telefono: ['', [Validators.required, Validators.maxLength(10)]],
-    cedula: ['', [Validators.required, Validators.maxLength(10)] ],
-    password: ['', [Validators.required, Validators.minLength(5)] ],
-    password2: ['', [Validators.required, Validators.minLength(5)] ],
-    terminos: [ false, Validators.requiredTrue ],
+    nombre: ['Fatima Padilla', [Validators.required, Validators.minLength(5)] ],
+    email: ['fatima@google.com', [Validators.required, Validators.pattern(this.patternEmail) ] ],
+    telefono: ['1231312', [Validators.required, Validators.maxLength(10)]],
+    cedula: ['131321', [Validators.required, Validators.maxLength(10)] ],
+    password: ['1234567', [Validators.required, Validators.minLength(5)] ],
+    password2: ['1234567', [Validators.required, Validators.minLength(5)] ],
+    terminos: [ true, Validators.requiredTrue ],
   }, {
     validators: this.passwordsIguales('password', 'password2')
   });
@@ -44,9 +46,11 @@ export default class RegisterComponent {
   // Metodos
 
   registrar(){
-    console.log(this.registerForm.value);
+    // console.log(this.registerForm.value);
     // console.log(this.registerForm.get('nombre')?.errors)
-    this.router.navigateByUrl('/dashboard/inicio');
+    const { email, password} = this.registerForm.value;
+    this.registerService.signUp( email, password );
+    // this.router.navigateByUrl('/dashboard/inicio');
   }
 
 
