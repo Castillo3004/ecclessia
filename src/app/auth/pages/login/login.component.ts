@@ -1,15 +1,11 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LoginService } from '../../services/auth/login.service';
-import { Observable } from 'rxjs';
 
-interface LoginIconos{
-  urlImg: string;
-  name: string;
-  accion: () => void;
-}
+import { LoginService } from '../../services/auth/login.service';
+import { LoginIconos } from '../../interfaces/login.interface';
+
 
 
 @Component({
@@ -26,17 +22,17 @@ export default class LoginComponent{
     {
       urlImg: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png',
       name: 'Facebook',
-      accion: () => this.ingresarconGoogle(),
+      accion: () => this.ingresarConProovedor('facebook'),
     },
     {
       urlImg: 'https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png',
       name: 'Google',
-      accion: () => this.ingresarconGoogle(),
+      accion: () => this.ingresarConProovedor('google'),
     },
     {
-      urlImg: 'https://static-00.iconduck.com/assets.00/linkedin-icon-2048x2048-ya5g47j2.png',
-      name: 'Linkedin',
-      accion: () => this.ingresarconGoogle(),
+      urlImg: 'https://freelogopng.com/images/all_img/1690643640twitter-x-icon-png.png',
+      name: 'Twitter X',
+      accion: () => this.ingresarConProovedor('twitter'),
     },
   ]
 
@@ -72,10 +68,25 @@ export default class LoginComponent{
 
 
 
-  ingresarconGoogle(){
 
-    this.loginService.loginGoogle();
 
+  ingresarConProovedor(proveedor: string){
+    switch (proveedor) {
+      case 'google':
+        this.loginService.loginGoogle();
+        break;
+
+      case 'facebook':
+        this.loginService.loginFacebook();
+        break;
+
+      case 'twitter':
+        this.loginService.loginTwitter();
+        break;
+
+      default:
+        break;
+    }
   }
 
 

@@ -22,13 +22,10 @@ export class RegisterService {
       // Create account
       await createUserWithEmailAndPassword( this.auth, email, password);
 
-      await this.auth.currentUser?.getIdTokenResult().then( claims => {
-        claims.claims =
-          { rol: 'SUPER_USER' }
-      })
-
-
-
+      // await this.auth.currentUser?.getIdTokenResult().then( claims => {
+      //   claims.claims =
+      //     { rol: 'SUPER_USER' }
+      // })
 
       // Send email
       // await this.sendEmailVerification( user );

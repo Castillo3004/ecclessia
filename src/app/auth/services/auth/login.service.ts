@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { Auth, GoogleAuthProvider, authState, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { signInWithRedirect } from 'firebase/auth';
+import { AuthProvider, FacebookAuthProvider, TwitterAuthProvider, signInWithRedirect } from 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,8 @@ export class LoginService {
 
   private readonly auth = inject( Auth );
   private readonly googleProvider = new GoogleAuthProvider();
+  private readonly facebookProvider = new FacebookAuthProvider();
+  private readonly twitterProvider = new TwitterAuthProvider();
 
 
   constructor() {
@@ -37,6 +39,8 @@ export class LoginService {
   }
 
 
+
+
   async loginGoogle(): Promise<void>{
 
     try {
@@ -44,6 +48,26 @@ export class LoginService {
 
     } catch (error) {
       console.log('Google login:', error);
+
+    }
+  }
+
+  async loginFacebook(): Promise<void>{
+
+    try {
+      await signInWithRedirect( this.auth, this.facebookProvider );
+
+    } catch (error) {
+      console.log('Facebook' ,error);
+    }
+
+  }
+
+  async loginTwitter(): Promise<void>{
+    try {
+
+      await signInWithRedirect( this.auth, this.twitterProvider)
+    } catch (error) {
 
     }
   }
