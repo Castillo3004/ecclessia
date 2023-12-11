@@ -1,0 +1,25 @@
+<section class="text-white-eclessia bg-primary">
+  <div class="container px-5 py-1 mx-auto">
+
+    <div class="flex flex-wrap m-4 text-center items-center justify-around">
+
+      @for (estadistica of estadisticasItems; track $index) {
+        <div class="p-4 md:w-1/4 sm:w-1/2 w-full text-white">
+          <div class="px-4 py-6 rounded-lg">
+            <figure class="flex mx-auto my-0 h-24 w-24">
+              <img class="w-full h-full"
+                [srcset]="estadistica.imgSvg"
+                [alt]="estadistica.title"
+              >
+            </figure>
+            <div>
+              <h2 class="pt-4 text-3xl opacity-95 text-white-eclessia font-semibold">{{ estadistica.porcentaje | number  }}</h2>
+              <p class="text-white-eclessia opacity-85  leading-3 ">{{ estadistica.title }}</p>
+            </div>
+          </div>
+        </div>
+      }
+
+    </div>
+  </div>
+</section>

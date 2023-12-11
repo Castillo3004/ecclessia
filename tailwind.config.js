@@ -10,8 +10,6 @@ module.exports = {
         'secondary': '#0F2A3D',
         'yellow-eclessia': '#FDA029',
         'white-eclessia': '#ECF0F1',
-        'fondo-transpartente': '#151A1E56',
-        '2fondo-transpartente': '#0790A53A',
       }
     },
   },
