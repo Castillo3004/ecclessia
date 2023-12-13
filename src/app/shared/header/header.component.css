@@ -20,3 +20,10 @@
 .item-active:hover::after{
   transform: translateX(-50%) scaleX(1);
 }
+
+
+
+.route-active{
+  color: #0F2A3D;
+}
+
