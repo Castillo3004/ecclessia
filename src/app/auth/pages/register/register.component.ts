@@ -29,13 +29,13 @@ export default class RegisterComponent {
 
 
   public registerForm: FormGroup = this.fb.group({
-    nombre: ['Fatima Padilla', [Validators.required, Validators.minLength(5)] ],
-    email: ['fatima@google.com', [Validators.required, Validators.pattern(this.patternEmail) ] ],
-    telefono: ['1231312', [Validators.required, Validators.maxLength(10)]],
-    cedula: ['131321', [Validators.required, Validators.maxLength(10)] ],
-    password: ['1234567', [Validators.required, Validators.minLength(5)] ],
-    password2: ['1234567', [Validators.required, Validators.minLength(5)] ],
-    terminos: [ true, Validators.requiredTrue ],
+    nombre: ['', [Validators.required, Validators.minLength(5)] ],
+    email: ['', [Validators.required, Validators.pattern(this.patternEmail) ] ],
+    telefono: ['', [Validators.required, Validators.maxLength(10)]],
+    cedula: ['', [Validators.required, Validators.maxLength(10)] ],
+    password: ['', [Validators.required, Validators.minLength(5)] ],
+    password2: ['', [Validators.required, Validators.minLength(5)] ],
+    terminos: [ false, Validators.requiredTrue ],
   }, {
     validators: this.passwordsIguales('password', 'password2')
   });
