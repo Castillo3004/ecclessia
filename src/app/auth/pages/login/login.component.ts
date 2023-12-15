@@ -61,9 +61,9 @@ export default class LoginComponent{
 
   ingresar(){
     const { email, password } = this.loginForm.value;
-    this.loginService.login( email, password).then(() => {
-      // this.router.navigateByUrl('dashboard/inicio')
-    });
+    this.router.navigateByUrl('dashboard/inicio')
+    // this.loginService.login( email, password).then(() => {
+    // });
   }
 
 
