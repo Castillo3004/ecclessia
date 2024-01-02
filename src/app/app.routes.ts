@@ -17,9 +17,20 @@ export const routes: Routes = [
         loadComponent: () => import('./landing/pages/servicios/servicios.component'),
       },
       {
+        path: 'reservar-bautizmo',
+        title: 'Reservar Bautizmo',
+        loadComponent: () => import('./landing/pages/reserva-bautizmo/reserva-bautizmo.component')
+        },
+      {
         path: 'parroquias',
         title: 'Parroquias',
         loadComponent: () => import('./landing/pages/parroquias/parroquias.component'),
+      },
+      {
+        path: 'parroquia/:id',
+        title: 'Parroquia',
+        loadComponent: () => import('./landing/pages/parroquia/parroquia.component'),
+
       },
       {
         path: 'sobre-nosotros',

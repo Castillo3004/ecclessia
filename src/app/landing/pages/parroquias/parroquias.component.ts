@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardParroquia } from '../../interfaces/card-parroquia';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-parroquias',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './parroquias.component.html',
   styleUrl: './parroquias.component.css'
 })

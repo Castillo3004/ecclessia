@@ -11,7 +11,7 @@
       <div class="lg:w-1/3 sm:w-1/2 p-4">
         <div class="flex relateive">
 
-          <a href="#" class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
+          <a [routerLink]="['/parroquia', parroquia.nombreParroquia]" routerLinkActive="router-link-active"  class="block rounded-lg p-4 shadow-sm shadow-indigo-100">
             <img
               [alt]="parroquia.nombreParroquia"
               [srcset]="parroquia.img"
