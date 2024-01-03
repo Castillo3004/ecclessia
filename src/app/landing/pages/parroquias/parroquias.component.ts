@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CardParroquia } from '../../interfaces/card-parroquia';
 import { RouterModule } from '@angular/router';
+
+import { CardParroquia } from '../../interfaces/card-parroquia';
+
 
 @Component({
   selector: 'app-parroquias',
@@ -11,6 +13,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './parroquias.component.css'
 })
 export default class ParroquiasComponent {
+
+
 
   public parroquias: CardParroquia[] = [
     {
