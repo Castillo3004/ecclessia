@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ContactanosService } from '../../services/contactanos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'landing-component-contactanos',
@@ -24,8 +25,15 @@ export class ContactanosComponent {
 
 
   async registrarContactanos(){
-    const resp = await this.contactanosService.addContactanos( this.contactanosForm.value ).then(() => {
+    await this.contactanosService.addContactanos( this.contactanosForm.value ).then(() => {
       this.contactanosForm.reset();
+      Swal.fire({
+        title: "Registrado",
+        text: "Gracias por tu comentario, lo hermos registrado con exito",
+        icon: "success",
+        confirmButtonColor: '#FDA029',
+        confirmButtonText: 'Listo'
+      });
     });
   }
 
