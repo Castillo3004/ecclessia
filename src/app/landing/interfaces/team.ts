@@ -1,4 +1,4 @@
-export interface CardTeam {
+export interface Team {
 
   imgAvatar: string,
   nombre: string,
