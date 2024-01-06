@@ -5,8 +5,6 @@ import { toSignal } from "@angular/core/rxjs-interop";
 import { ParroquiasService } from '../../services/parroquias.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { routes } from '../../../app.routes';
-import { Parroquia } from '../../interfaces/parroquia';
 
 @Component({
   selector: 'app-parroquia',
