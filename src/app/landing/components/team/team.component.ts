@@ -45,10 +45,6 @@ export class TeamComponent {
       facebook: 'https://www.facebook.com',
       github: 'https://www.github.com',
     },
-
-
-
-
   ];
 
 

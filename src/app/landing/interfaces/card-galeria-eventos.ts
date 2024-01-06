@@ -1,4 +1,4 @@
-export interface CardGaleriaEventos {
+export interface GaleriaEventos {
   img: string,
   title: string,
   subtitle: string,

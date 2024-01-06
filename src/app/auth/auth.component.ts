@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import LoginComponent from './pages/login/login.component';
-import { LoginService } from './services/auth/login.service';
+import { LoginService } from './services/login.service';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { ErrorMessageComponent } from '../../components/error-message/error-message.component';
-import { RegisterService } from '../../services/auth/register.service';
+import { RegisterService } from '../../services/register.service';
 
 
 @Component({

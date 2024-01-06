@@ -1,10 +1,10 @@
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" [srcset]="parroquia()?.imgParroquia || 'https://dummyimage.com/400x400'" [style]="'view-transition-name: imgParroquia' + parroquia()?.id">
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 class="text-sm title-font text-gray-500 tracking-widest">**Patrono Parroquia**</h2>
-        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">**Nombre Parroquia**</h1>
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ parroquia()?.patronoParroquia }}</h2>
+        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ parroquia()?.nombreParroquia }}</h1>
         <div class="flex mb-4">
           <span class="flex  py-2 space-x-2s">
             <a class="text-gray-500">
@@ -29,11 +29,11 @@
           <div class="flex justify-between py-10">
             <div class="items-center text-center">
               <h4>Telefono</h4>
-              <p>+593 985 042 528</p>
+              <p> {{ parroquia()?.celularParroquia || 'Sin Telefono'}}</p>
             </div>
             <div class="items-center text-center">
               <h4>Correo</h4>
-              <p>parroquia-parroquia.com</p>
+              <p>{{ parroquia()?.emailParroquia }}</p>
             </div>
           </div>
         </div>

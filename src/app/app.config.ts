@@ -12,7 +12,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(
       routes,
-      withViewTransitions()
+      withViewTransitions({
+        skipInitialTransition: true
+      })
     ),
     importProvidersFrom(
       provideFirebaseApp(() => initializeApp( environment.firebase ))
