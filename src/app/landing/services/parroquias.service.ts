@@ -17,9 +17,9 @@ export class ParroquiasService {
   }
 
 
-  getParroquias(): Observable<Parroquia[]> {
+  getParroquias(): Observable<any[]> {
     const parroquias = collection(this.firestore, 'datos-parroquias');
-    return collectionData(parroquias, { idField: 'id' }) as Observable<Parroquia[]>
+    return collectionData(parroquias, { idField: 'id' });
   }
 
   getParroquiaById(id: string): Observable<Parroquia>{

@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'landing-component-reserva-bautismo',
+  selector: 'landing-component-card-reserva-bautismo',
   standalone: true,
   imports: [CommonModule, RouterModule ],
-  templateUrl: './reserva-bautismo.component.html',
-  styleUrl: './reserva-bautismo.component.css'
+  templateUrl: './card-reserva-bautismo.component.html',
+  styleUrl: './card-reserva-bautismo.component.css'
 })
-export class ReservaBautismoComponent {
+export class CardReservaBautismoComponent {
 
 }

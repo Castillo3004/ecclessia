@@ -1,5 +1,5 @@
 export interface Parroquia {
-  id: string;
+  id: string,
   celularParroco:      string;
   celularParroquia:    string;
   direccionParroquia:  string;
@@ -11,9 +11,20 @@ export interface Parroquia {
   lng:                 string;
   nombreParrocoActual: string;
   nombreParroquia:     string;
-  nombresCapillas:     string;
-  numeroBarrios:       string;
-  numeroCapillas:      string;
   numeroSacerdotes:    string;
   patronoParroquia:    string;
+  barrios:             Barrios;
+  capillas:            Capillas;
+}
+
+export interface Barrios {
+  idBarrio:     string;
+  imgBarrio:    string;
+  nombreBarrio: string;
+}
+
+export interface Capillas {
+  idCapilla:     string;
+  imgCapilla:    string;
+  nombreCapilla: string;
 }

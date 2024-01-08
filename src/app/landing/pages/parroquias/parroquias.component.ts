@@ -19,7 +19,7 @@ export default class ParroquiasComponent implements OnInit{
 
   private readonly parroquiasService = inject( ParroquiasService );
 
-  public parroquias: Parroquia[] = [];
+  public parroquias: any[] = [];
 
 
   ngOnInit(): void {

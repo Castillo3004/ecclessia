@@ -57,7 +57,7 @@ export const routes: Routes = [
     path: 'dashboard',
     loadComponent: () => import('./admin/admin.component'),
     children: [
-      { path: 'inicio', loadComponent: () => import('./admin/pages/inicio/inicio.component') },
+      { path: 'inicio', loadComponent: () => import('./admin/pages/inicio-dashboard/inicio-dashboard.component') },
       { path: '', redirectTo: '/inicio', pathMatch: 'full' },
     ]
   }

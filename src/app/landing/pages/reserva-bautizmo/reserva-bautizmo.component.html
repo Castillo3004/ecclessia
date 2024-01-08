@@ -1,305 +1,170 @@
 <section class="text-gray-600 body-font">
-  <div class="container px-5 pt-24 mx-auto flex flex-wrap flex-col">
+  <div class="container px-5 pt-14 min-h-[90vh] mx-auto flex flex-wrap flex-col">
 
   <shared-steps class="flex" [valor]="whatStep"></shared-steps>
 
-  <div class="container">
+      <section>
 
-
-
-    @if (whatStep === 1) {
-    <!-- STEP 1 Seleccionar Templo -->
-    <div>
-
-      <form  class="max-w-md px-4 mx-auto">
-        <div class="relative">
-            <svg xmlns="http://www.w3.org/2000/svg" class="absolute top-0 bottom-0 w-6 h-6 my-auto text-gray-400 left-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-            <input type="text" placeholder="Buscar Templo..." class="w-full py-3 pl-12 pr-4 text-gray-500 border rounded-md outline-none bg-gray-50 focus:bg-white focus:border-primary"/>
-        </div>
-      </form>
-
-      <section class="my-4">
-
-        <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="bg-white pt-4 sm:pt-6 lg:pt-8 my-8 rounded-lg">
           <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <div class="mb-6 flex items-end justify-between gap-4">
-              <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Templos</h2>
-            </div>
+            <!-- STEP 1 Seleccionar Templo -->
+            @if (whatStep === 1) {
 
-            <div class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:grid-cols-6 xl:grid-cols-8">
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Rachit Tank" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+              <div class="mb-6 flex flex-col justify-between gap-4">
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Templos</h2>
+                <p class="text-lg pb-5">Selecccione la parroquia</p>
+              </div>
 
-                </a>
+              <div class="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-4 md:gap-x-6 lg:grid-cols-6 xl:grid-cols-8">
 
+                @for (parroquia of parroquias; track parroquia.id) {
+                  <!-- product - start -->
+                  <div>
+                    <a class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3 " (click)="seleccionarParroquia(parroquia)">
+                      <img [srcset]="parroquia.imgParroquia" loading="lazy" alt="Photo by Rachit Tank" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" [ngClass]="{'opacity-50': parroquiaSeleccionada === parroquia.id}"/>
+                      @if (parroquiaSeleccionada === parroquia.id) {
+                        <img srcset="https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Yes_Check_Circle.svg/2048px-Yes_Check_Circle.svg.png" class="h-5 w-5 right-2 top-2 absolute object-cover object-center">
+                      }
+                    </a>
+                    <div>
+                      <h5 class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-md">{{ parroquia.nombreParroquia }}</h5>
+                    </div>
+                  </div>
+                  <!-- product - end -->
+                }
+              </div>
+
+              <div class="w-full flex justify-end">
+                <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                        (click)="steps()"
+                        [disabled]="parroquiaSeleccionada === ''"
+                        [ngClass]="{'opacity-60': parroquiaSeleccionada === ''}">
+                  Siguiente
+                </button>
+              </div>
+
+
+            }@else if (whatStep === 2) {
+
+              <div class="mb-6 flex flex-col justify-between gap-4">
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Fecha y Hora</h2>
+                <p class="text-lg pb-5">Selecccione la fecha y hora</p>
+              </div>
+
+              <form autocomplete="off" [formGroup]="fechaHoraForm" (ngSubmit)="registrarHoraFecha()">
                 <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Timely Watch</a>
+                  <div class="sm:col-span-2">
+                    <label for="fechaBautizo" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha</label>
+                    <input formControlName="fecha" name="fechaBautizo" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                  </div>
 
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$15.00</span>
-                    <span class="mb-0.5 text-red-500 line-through">$30.00</span>
+                  <div class="sm:col-span-2">
+                    <label for="horaBautizo" class="block mb-2 text-sm font-medium text-gray-900">Default select</label>
+                    <select formControlName="hora" id="horaBautizo" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+                      <option selected>Choose a country</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="FR">France</option>
+                      <option value="DE">Germany</option>
+                    </select>
                   </div>
                 </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Galina N" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Fancy Plant</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$9.00</span>
-                  </div>
+                <div class="w-full flex justify-end">
+                  <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                          [disabled]="!fechaHoraForm.valid"
+                          [ngClass]="{'opacity-60': !fechaHoraForm.valid}">
+                    Siguiente
+                  </button>
                 </div>
+
+              </form>
+
+            }@else if (whatStep === 3){
+
+              <div class="mb-6 flex flex-col justify-between gap-4">
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Formulario de Bautizmo</h2>
               </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by eniko kis" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
 
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Elderly Cam</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$45.00</span>
+              <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+                <!-- form - start -->
+                <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+                  <div>
+                    <label for="first-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Mamá</label>
+                    <input name="first-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Irene Kredenets" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Shiny Shoe</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$29.00</span>
+                  <div>
+                    <label for="last-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Papá</label>
+                    <input name="last-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1528476513691-07e6f563d97f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Charles Deluvio" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Spiky Plant</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$4.00</span>
+                  <div>
+                    <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Bautizado</label>
+                    <input name="company" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Galina N" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Fancy Plant</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$9.00</span>
+                  <div>
+                    <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha Nacimiento</label>
+                    <input name="company" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by eniko kis" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Elderly Cam</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$45.00</span>
+                  <div>
+                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Edad Bautizado</label>
+                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Irene Kredenets" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Shiny Shoe</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$29.00</span>
+                  <div>
+                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Edad Bautizado</label>
+                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-              <!-- product - start -->
-              <div>
-                <a href="#" class="group relative mb-2 block h-40 overflow-hidden rounded-lg bg-gray-100 lg:mb-3">
-                  <img src="https://images.unsplash.com/photo-1528476513691-07e6f563d97f?auto=format&q=75&fit=crop&w=600" loading="lazy" alt="Photo by Charles Deluvio" class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
-                </a>
-
-                <div>
-                  <a href="#" class="hover:gray-800 mb-1 text-gray-500 transition duration-100 lg:text-lg">Spiky Plant</a>
-
-                  <div class="flex items-end gap-2">
-                    <span class="font-bold text-gray-800 lg:text-lg">$4.00</span>
+                  <div>
+                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Padrino</label>
+                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
-                </div>
-              </div>
-              <!-- product - end -->
 
-            </div>
+                  <div>
+                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Madrina</label>
+                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                  </div>
+
+                  <div>
+                    <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Celular Referencia</label>
+                    <input name="subject" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                  </div>
+
+                  <div>
+                    <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Correo Referencia</label>
+                    <input name="subject" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                  </div>
+
+                </form>
+
+                <div class="w-full flex justify-end">
+                  <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                          [disabled]="!fechaHoraForm.valid"
+                          [ngClass]="{'opacity-60': !fechaHoraForm.valid}">
+                    Siguiente
+                  </button>
+                </div>
+                <!-- form - end -->
+              </div>
+
+            }@else if (whatStep === 4) {
+
+              <div class="mb-6 flex flex-col justify-between gap-4">
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Reserva Completada</h2>
+                <p class="text-lg pb-5">Ha realizado la reserva con exito</p>
+              </div>
+
+
+            }
+
           </div>
         </div>
       </section>
-
-      <label for="step1">Primer paso</label>
-      <input type="checkbox" id="step1" [(ngModel)]="valorStep1" (change)="onCheck()" class="ml-3">
-
-      <button class="my-3 px-8 py-3 bg-secondary rounded-xl text-white-eclessia flex justify-end" (click)="steps()" >Siguiente</button>
-
-    </div>
-  }@else if (whatStep === 2) {
-
-    <div>
-      <h1>Segundo Paso</h1>
-
-      <div class="sm:col-span-2">
-        <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha</label>
-        <input name="subject" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div class="sm:col-span-2">
-        <label for="default" class="block mb-2 text-sm font-medium text-gray-900">Default select</label>
-        <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-          <option selected>Choose a country</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
-        </select>
-      </div>
-
-
-    </div>
-
-
-
-
-
-
-
-    <label for="step2">Segundo paso</label>
-    <input type="checkbox" id="step2" [(ngModel)]="valorStep2" (change)="onCheck()" class="ml-3">
-
-    <button class="my-3 px-8 py-3 bg-secondary rounded-xl text-white-eclessia flex justify-end" (click)="steps()" >Siguiente</button>
-  }@else if (whatStep === 3) {
-
-    <div>
-      <h1>Tercer Paso</h1>
-
-      <div class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <!-- text - start -->
-    <div class="mb-10 md:mb-16">
-      <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Get in touch</h2>
-
-      <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
-    </div>
-    <!-- text - end -->
-
-    <!-- form - start -->
-    <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
-      <div>
-        <label for="first-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">First name*</label>
-        <input name="first-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div>
-        <label for="last-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Last name*</label>
-        <input name="last-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div class="sm:col-span-2">
-        <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Company</label>
-        <input name="company" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div class="sm:col-span-2">
-        <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Email*</label>
-        <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div class="sm:col-span-2">
-        <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Subject*</label>
-        <input name="subject" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
-      </div>
-
-      <div class="sm:col-span-2">
-        <label for="message" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Message*</label>
-        <textarea name="message" class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
-      </div>
-
-      <div class="flex items-center justify-between sm:col-span-2">
-        <button class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
-
-        <span class="text-sm text-gray-500">*Required</span>
-      </div>
-
-      <p class="text-xs text-gray-400">By signing up to our newsletter you agree to our <a href="#" class="underline transition duration-100 hover:text-indigo-500 active:text-indigo-600">Privacy Policy</a>.</p>
-    </form>
-    <!-- form - end -->
-  </div>
-</div>
-
-    </div>
-
-    <label for="step3">Tercer paso</label>
-    <input type="checkbox" id="step3" [(ngModel)]="valorStep3" (change)="onCheck()" class="ml-3">
-
-    <button class="my-3 px-8 py-3 bg-secondary rounded-xl text-white-eclessia flex justify-end" (click)="steps()" >Siguiente</button>
-  }@else if (whatStep === 4) {
-    <h1>Cuarto Paso</h1>
-
-    <label for="step4">Cuarto paso</label>
-    <input type="checkbox" id="step4" [(ngModel)]="valorStep4" (change)="onCheck()" class="ml-3">
-
-    <button class="my-3 px-8 py-3 bg-secondary rounded-xl text-white-eclessia flex justify-end" (click)="steps()" >Siguiente</button>
-  }
-
-    <h1> Step 1: {{ valorStep1 }}</h1>
-    <h1> Step 2: {{ valorStep2 }}</h1>
-    <h1> Step 3: {{ valorStep3 }}</h1>
-    <h1> Step 4: {{ valorStep4 }}</h1>
-
-  </div>
 
   </div>
 </section>

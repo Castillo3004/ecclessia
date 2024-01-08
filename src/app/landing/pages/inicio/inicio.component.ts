@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { EstadisticasComponent } from '../../components/estadisticas/estadisticas.component';
 import { TestimoniosComponent } from '../../components/testimonios/testimonios.component';
-import { ReservaBautismoComponent } from '../../components/reserva-bautismo/reserva-bautismo.component';
-import { InformacionParroquiaComponent } from '../../components/informacion-parroquia/informacion-parroquia.component';
+import { CardReservaBautismoComponent } from '../../components/card-reserva-bautismo/card-reserva-bautismo.component';
+import { CardInformacionParroquiaComponent } from '../../components/card-informacion-parroquia/card-informacion-parroquia.component';
 import { GaleriaComponent } from '../../components/galeria/galeria.component';
 import { ContactanosComponent } from '../../components/contactanos/contactanos.component';
 
@@ -15,8 +15,8 @@ import { ContactanosComponent } from '../../components/contactanos/contactanos.c
     CommonModule,
     EstadisticasComponent,
     TestimoniosComponent,
-    ReservaBautismoComponent,
-    InformacionParroquiaComponent,
+    CardReservaBautismoComponent,
+    CardInformacionParroquiaComponent,
     GaleriaComponent,
     ContactanosComponent,
   ],

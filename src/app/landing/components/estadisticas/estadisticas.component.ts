@@ -36,20 +36,33 @@ export class EstadisticasComponent implements OnInit{
       this.parroquias = parroquias;
       this.totalParroquias = parroquias.length;
 
-      for(const parroquia of this.parroquias ){
-        let numBarrios = parseInt(parroquia.numeroBarrios);
-        let numSacerdotes = parseInt(parroquia.numeroSacerdotes);
-        let numTemplos = parseInt(parroquia.numeroCapillas)
+      let numBarrios = 0;
+      let numTemplos = 0;
 
+      for(const parroquia of this.parroquias ){
+
+        let barrios = parroquia.barrios;
+        let capillas = parroquia.capillas;
+
+        for(const capilla in capillas){
+          numTemplos++;
+        }
+
+        for(const barrio in barrios){
+          numBarrios++;
+        }
+
+        let numSacerdotes = parseInt(parroquia.numeroSacerdotes);
         this.totalSacerdotes += numSacerdotes;
-        this.totalTemplos += numTemplos;
-        this.totalBarrios += numBarrios;
+
       }
+
+      this.totalTemplos = numTemplos;
+      this.totalBarrios = numBarrios;
+
       this.actualizarEstadisticas();
-      // console.log( 'Total Parroquias: ' + this.totalParroquias);
-      // console.log( 'Total Sacerdotes: ' + this.totalSacerdotes);
-      // console.log( 'Total Templos: ' + this.totalTemplos);
-      // console.log('Total Barrios: ' + this.totalBarrios);
+
+
     });
   }
 
