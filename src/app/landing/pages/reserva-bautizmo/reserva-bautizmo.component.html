@@ -36,7 +36,7 @@
 
               <div class="w-full flex justify-end">
                 <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
-                        (click)="steps()"
+                        (click)="setWhatStep(2)"
                         [disabled]="parroquiaSeleccionada === ''"
                         [ngClass]="{'opacity-60': parroquiaSeleccionada === ''}">
                   Siguiente
@@ -46,6 +46,10 @@
 
             }@else if (whatStep === 2) {
 
+              <a class="cursor-pointer" (click)="setWhatStep(1)">
+                <span class="material-symbols-rounded pr-2 my-4">arrow_back</span>
+              </a>
+
               <div class="mb-6 flex flex-col justify-between gap-4">
                 <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Fecha y Hora</h2>
                 <p class="text-lg pb-5">Selecccione la fecha y hora</p>
@@ -53,25 +57,27 @@
 
               <form autocomplete="off" [formGroup]="fechaHoraForm" (ngSubmit)="registrarHoraFecha()">
                 <div>
-                  <div class="sm:col-span-2">
-                    <label for="fechaBautizo" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha</label>
+
+                  <div class="sm:col-span-2 my-4">
+                    <label for="fechaBautizo" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Seleccione la Fecha</label>
                     <input formControlName="fecha" name="fechaBautizo" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
                   </div>
 
-                  <div class="sm:col-span-2">
-                    <label for="horaBautizo" class="block mb-2 text-sm font-medium text-gray-900">Default select</label>
-                    <select formControlName="hora" id="horaBautizo" class="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-                      <option selected>Choose a country</option>
-                      <option value="US">United States</option>
-                      <option value="CA">Canada</option>
-                      <option value="FR">France</option>
-                      <option value="DE">Germany</option>
+                  <div class="sm:col-span-2 my-4">
+                    <label for="horaBautizo" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Seleccione la hora</label>
+                    <select formControlName="hora" id="horaBautizo" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+                      <option selected disabled>Seleccione</option>
+                      <option value="08h00">08h00</option>
+                      <option value="10h00">10h00</option>
+                      <option value="16h00">16h00</option>
+                      <option value="18h00">18h00</option>
                     </select>
                   </div>
                 </div>
 
                 <div class="w-full flex justify-end">
                   <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                          type="submit"
                           [disabled]="!fechaHoraForm.valid"
                           [ngClass]="{'opacity-60': !fechaHoraForm.valid}">
                     Siguiente
@@ -82,81 +88,111 @@
 
             }@else if (whatStep === 3){
 
+              <a class="cursor-pointer" (click)="setWhatStep(2)">
+                <span class="material-symbols-rounded pr-2 my-4">arrow_back</span>
+              </a>
+
               <div class="mb-6 flex flex-col justify-between gap-4">
-                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Formulario de Bautizmo</h2>
+                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Formulario de Bautismo</h2>
               </div>
 
 
               <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
                 <!-- form - start -->
-                <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+                <form autocomplete="off" [formGroup]="datosBautizoForm" class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2" (ngSubmit) = "registrarDatosBautizo()">
                   <div>
-                    <label for="first-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Mamá</label>
-                    <input name="first-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="nombreMama" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Mamá</label>
+                    <input id="nombreMama" formControlName="nombreMama" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="last-name" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Papá</label>
-                    <input name="last-name" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="nombrePapa" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Papá</label>
+                    <input id="nombrePapa" formControlName="nombrePapa" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Bautizado</label>
-                    <input name="company" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="nombresBautizado" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombres Bautizado</label>
+                    <input id="nombresBautizado" formControlName="nombresBautizado" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha Nacimiento</label>
-                    <input name="company" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="apellidosBautizado" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Apellidos Bautizado</label>
+                    <input id="apellidosBautizado" formControlName="apellidosBautizado" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Edad Bautizado</label>
-                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="fechaNacimiento" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Fecha Nacimiento</label>
+                    <input id="fechaNacimiento" formControlName="fechaNacimiento" type="date" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Edad Bautizado</label>
-                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="edadBautizado" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Edad Bautizado</label>
+                    <input id="edadBautizado" formControlName="edadBautizado" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
+                  </div>
+
+
+                  <div>
+                    <label for="nombrePadrino" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Padrino</label>
+                    <input id="nombrePadrino" formControlName="nombrePadrino" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Padrino</label>
-                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="nombreMadrina" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Madrina</label>
+                    <input id="nombreMadrina" formControlName="nombreMadrina" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Nombre Madrina</label>
-                    <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="celularReferencia" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Celular Referencia</label>
+                    <input id="celularReferencia" formControlName="celularReferencia" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
                   <div>
-                    <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Celular Referencia</label>
-                    <input name="subject" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                    <label for="correoReferencia" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Correo Referencia</label>
+                    <input id="correoReferencia" formControlName="correoReferencia" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-primary ring-opacity-50 transition duration-100 focus:ring" />
                   </div>
 
-                  <div>
-                    <label for="subject" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Correo Referencia</label>
-                    <input name="subject" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+                  <div class="w-full flex justify-end col-span-2">
+                    <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                            type="submit"
+                            [disabled]="!datosBautizoForm.valid"
+                            [ngClass]="{'opacity-60': !datosBautizoForm.valid}">
+                      Siguiente
+                    </button>
                   </div>
 
                 </form>
 
-                <div class="w-full flex justify-end">
-                  <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
-                          [disabled]="!fechaHoraForm.valid"
-                          [ngClass]="{'opacity-60': !fechaHoraForm.valid}">
-                    Siguiente
-                  </button>
-                </div>
                 <!-- form - end -->
               </div>
 
             }@else if (whatStep === 4) {
 
-              <div class="mb-6 flex flex-col justify-between gap-4">
-                <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Reserva Completada</h2>
-                <p class="text-lg pb-5">Ha realizado la reserva con exito</p>
+              <div class="mb-6 flex flex-col justify-between gap-4 items-center text-center">
+                <div>
+                  <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">Reserva Completada</h2>
+                  <p class="text-lg pb-5">Ha realizado la reserva con exito</p>
+                </div>
+
+                <figure class="object-cover w-40 h-40 rounded-full mx-auto my-5">
+                  <img class="object-cover w-full h-full rounded-full" src="https://www.cecyteh.edu.mx/images/logos/check.gif" alt="Listo">
+                </figure>
+
+                <div>
+                  <p class="py-4">Recuerda que para validar la Reserva de Bautismo debes acercarte a la parroquia y presentar los siguientes documentos:</p>
+                  <ul class="list-disc">
+                    <li class="text-left ml-8 py-1">Copia de cedula de los Padres de Familia</li>
+                    <li class="text-left ml-8 py-1">Acta de Nacimiento del Bautizado</li>
+                  </ul>
+                </div>
+
+                <div class="w-full flex justify-center py-4">
+                  <button class="inline-flex text-white-eclessia bg-secondary border-0 py-2 px-6 focus:outline-none hover:bg-opacity-90 rounded text-lg mb-4"
+                    [routerLink]="['/inicio']"
+                  >
+                    Finalizar
+                  </button>
+                </div>
+
               </div>
 
 
